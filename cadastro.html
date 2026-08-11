@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+</head>
+
+<body>
+
+        </section> <!-- ========================= CADASTRO DE PONTO ========================== -->
+        <section id="cadastro" class="cadastro">
+                <div class="titulo-secao"> <span>CADASTRAR PONTO</span>
+                        <h2> Conhece um lugar que distribui alimentos? </h2>
+                        <p> Cadastre as informações para que o ponto possa fazer parte da rede. </p>
+                </div>
+                <form>
+                        <div class="campo"> <label for="nome-ponto"> Nome do ponto * </label> <input type="text"
+                                        id="nome-ponto" name="nome-ponto" placeholder="Ex.: Cozinha Solidária Esperança"
+                                        required> </div>
+                        <div class="campo"> <label for="responsavel"> Nome do responsável </label> <input type="text"
+                                        id="responsavel" name="responsavel" placeholder="Nome do responsável"> </div>
+                        <div class="campo"> <label for="endereco"> Endereço * </label> <input type="text" id="endereco"
+                                        name="endereco" placeholder="Rua, número, bairro" required> </div>
+                        <div class="campo"> <label for="cidade"> Cidade * </label> <input type="text" id="cidade"
+                                        name="cidade" placeholder="Cidade - Estado" required> </div>
+                        <div class="campo"> <label for="telefone"> Telefone </label> <input type="tel" id="telefone"
+                                        name="telefone" placeholder="(00) 00000-0000"> </div>
+                        <div class="campo"> <label for="horario"> Horário de atendimento * </label> <input type="text"
+                                        id="horario" name="horario" placeholder="Ex.: Segunda a sexta, 11h às 14h"
+                                        required> </div>
+                        <div class="campo campo-completo"> <label> O que é distribuído? </label>
+                                <div class="opcoes"> <label> <input type="checkbox" name="alimento" value="marmitas">
+                                                Marmitas
+                                        </label> <label> <input type="checkbox" name="alimento" value="cestas"> Cestas
+                                                básicas </label>
+                                        <label> <input type="checkbox" name="alimento" value="frutas"> Frutas e verduras
+                                        </label>
+                                        <label> <input type="checkbox" name="alimento" value="paes"> Pães </label>
+                                </div>
+                        </div>
+                        <div class="campo campo-completo"> <label for="regras"> Regras para retirada </label> <textarea
+                                        id="regras" name="regras" rows="4"
+                                        placeholder="Informe se é necessário cadastro, documento, horário específico etc."></textarea>
+                        </div>
+                        <div class="campo campo-completo"> <label for="observacoes"> Observações </label> <textarea
+                                        id="observacoes" name="observacoes" rows="4"
+                                        placeholder="Outras informações importantes"></textarea> </div>
+                        <div class="campo campo-completo"> <label> <input type="checkbox" name="confirmacao" required>
+                                        Confirmo
+                                        que as informações fornecidas são verdadeiras. </label> </div>
+                        <div class="campo campo-completo"> <button type="submit"> Enviar cadastro </button> </div>
+                </form>
+
+</body>
+
+</html>

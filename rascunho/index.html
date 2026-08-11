@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="pt-BR">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260811-05-f555caa","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alimenta+ | Mapa da Solidariedade</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        verde: '#2E7D32',
+                        laranja: '#FB8C00',
+                        azulclaro: '#E3F2FD'
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+        body { font-family: 'DM Sans', sans-serif; }
+        .font-size-large { font-size: 1.2em !important; }
+        .font-size-xlarge { font-size: 1.4em !important; }
+        .high-contrast { filter: contrast(1.4); }
+        @keyframes countUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: countUp 0.6s ease forwards; }
+        .marker-popup { min-width: 250px; }
+        #map { z-index: 1; }
+        .leaflet-container { border-radius: 1rem; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-answer.open { max-height: 200px; }
+        .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+    </style>
+  <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
+ <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script></head>
+ <body data-template-id="__page-root" class="w-full min-h-screen bg-white dark:bg-gray-900 dark:text-white transition-colors"><!-- Accessibility Toolbar -->
+  <div id="a11y-toolbar" class="fixed top-4 right-4 z-50 flex flex-col gap-2"><button onclick="toggleDark()" class="bg-white dark:bg-gray-800 shadow-lg rounded-full p-3 hover:scale-110 transition" aria-label="Modo escuro"> <i data-lucide="moon" class="w-5 h-5"></i> </button> <button onclick="changeFontSize()" class="bg-white dark:bg-gray-800 shadow-lg rounded-full p-3 hover:scale-110 transition" aria-label="Tamanho da fonte"> <i data-lucide="type" class="w-5 h-5"></i> </button> <button onclick="toggleContrast()" class="bg-white dark:bg-gray-800 shadow-lg rounded-full p-3 hover:scale-110 transition" aria-label="Alto contraste"> <i data-lucide="contrast" class="w-5 h-5"></i> </button>
+  </div><!-- Header -->
+  <header class="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-40">
+   <nav class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-2"><span class="text-2xl">🍽️</span>
+     <h1 data-template-id="site-logo" class="canva-text text-xl font-bold text-verde"></h1>
+    </div>
+    <div class="hidden md:flex gap-6 text-sm font-medium"><a href="#home" class="hover:text-verde transition">Início</a> <a href="#mapa" class="hover:text-verde transition">Mapa</a> <a href="#ods" class="hover:text-verde transition">ODS 2</a> <a href="#ajudar" class="hover:text-verde transition">Ajudar</a> <a href="#contato" class="hover:text-verde transition">Contato</a>
+    </div><button id="mobile-menu-btn" class="md:hidden" aria-label="Menu"> <i data-lucide="menu" class="w-6 h-6"></i> </button>
+   </nav>
+  </header>
+  <main><!-- Hero -->
+   <section id="home" class="relative overflow-hidden">
+    <div data-template-id="hero-bg" class="canva-section bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-900">
+     <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+       <h2 data-template-id="hero-title" class="canva-text text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight"></h2>
+       <p data-template-id="hero-subtitle" class="canva-text mt-4 text-lg text-gray-600 dark:text-gray-300"></p>
+       <div class="mt-8 flex flex-wrap gap-4"><a href="#mapa" data-template-id="hero-cta-primary" class="canva-button px-6 py-3 bg-verde text-white rounded-full font-semibold hover:bg-green-800 transition shadow-lg"></a> <a href="#ajudar" data-template-id="hero-cta-secondary" class="canva-button px-6 py-3 bg-white text-verde border-2 border-verde rounded-full font-semibold hover:bg-green-50 transition"></a>
+       </div>
+      </div>
+      <div class="flex justify-center"><img data-template-id="hero-image" class="canva-image rounded-2xl shadow-2xl w-full max-w-md object-cover" loading="lazy">
+      </div>
+     </div>
+    </div>
+   </section><!-- Como Funciona -->
+   <section class="py-16 bg-white dark:bg-gray-900">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+     <h2 data-template-id="como-funciona-title" class="canva-text text-3xl font-bold text-gray-900 dark:text-white"></h2>
+     <div class="mt-12 grid md:grid-cols-3 gap-8">
+      <div data-template-id="step-1-card" class="canva-card card-hover p-8 rounded-2xl bg-azulclaro dark:bg-gray-800 text-center">
+       <div class="text-4xl mb-4">
+        📍
+       </div>
+       <h3 data-template-id="step-1-title" class="canva-text font-bold text-lg"></h3>
+       <p data-template-id="step-1-desc" class="canva-text mt-2 text-gray-600 dark:text-gray-300"></p>
+      </div>
+      <div data-template-id="step-2-card" class="canva-card card-hover p-8 rounded-2xl bg-azulclaro dark:bg-gray-800 text-center">
+       <div class="text-4xl mb-4">
+        🍽️
+       </div>
+       <h3 data-template-id="step-2-title" class="canva-text font-bold text-lg"></h3>
+       <p data-template-id="step-2-desc" class="canva-text mt-2 text-gray-600 dark:text-gray-300"></p>
+      </div>
+      <div data-template-id="step-3-card" class="canva-card card-hover p-8 rounded-2xl bg-azulclaro dark:bg-gray-800 text-center">
+       <div class="text-4xl mb-4">
+        ❤️
+       </div>
+       <h3 data-template-id="step-3-title" class="canva-text font-bold text-lg"></h3>
+       <p data-template-id="step-3-desc" class="canva-text mt-2 text-gray-600 dark:text-gray-300"></p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Mapa -->
+   <section id="mapa" class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4">
+     <h2 data-template-id="mapa-title" class="canva-text text-3xl font-bold text-center text-gray-900 dark:text-white mb-8"></h2><!-- Filters -->
+     <div class="flex flex-wrap gap-3 mb-4 justify-center"><input type="text" placeholder="Digite seu bairro ou CEP" class="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 w-64 text-sm" id="search-input"> <label class="flex items-center gap-1 text-sm bg-white dark:bg-gray-700 px-3 py-2 rounded-full shadow-sm cursor-pointer"><input type="checkbox" checked class="accent-verde filter-cb" data-type="refeicao"> 🍽 Refeição</label> <label class="flex items-center gap-1 text-sm bg-white dark:bg-gray-700 px-3 py-2 rounded-full shadow-sm cursor-pointer"><input type="checkbox" checked class="accent-verde filter-cb" data-type="cesta"> 🛒 Cesta básica</label> <label class="flex items-center gap-1 text-sm bg-white dark:bg-gray-700 px-3 py-2 rounded-full shadow-sm cursor-pointer"><input type="checkbox" checked class="accent-verde filter-cb" data-type="banco"> 🥬 Banco de alimentos</label> <label class="flex items-center gap-1 text-sm bg-white dark:bg-gray-700 px-3 py-2 rounded-full shadow-sm cursor-pointer"><input type="checkbox" checked class="accent-verde filter-cb" data-type="ong"> 🧑‍🤝‍🧑 ONG</label>
+     </div>
+     <div id="map" class="w-full h-[500px] rounded-2xl shadow-lg"></div><!-- Detail card -->
+     <div id="map-detail" class="hidden mt-4 bg-white dark:bg-gray-700 rounded-2xl p-6 shadow-lg max-w-lg mx-auto">
+      <h3 id="detail-name" class="font-bold text-xl text-verde"></h3>
+      <p id="detail-address" class="text-gray-600 dark:text-gray-300 mt-1"></p>
+      <p id="detail-hours" class="text-sm text-gray-500 dark:text-gray-400 mt-1"></p>
+      <p id="detail-phone" class="text-sm mt-1"></p>
+      <p id="detail-type" class="mt-2 text-sm font-medium text-laranja"></p>
+      <div class="mt-4 flex flex-wrap gap-3"><button class="px-4 py-2 bg-verde text-white rounded-full text-sm font-medium hover:bg-green-800 transition">Como chegar</button> <button class="px-4 py-2 bg-laranja text-white rounded-full text-sm font-medium hover:bg-orange-700 transition">Ligar</button> <button class="px-4 py-2 bg-gray-200 dark:bg-gray-600 rounded-full text-sm font-medium hover:bg-gray-300 transition">Compartilhar</button>
+      </div>
+     </div>
+    </div>
+   </section><!-- ODS 2 -->
+   <section id="ods" class="py-16 bg-white dark:bg-gray-900">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+     <div>
+      <h2 data-template-id="ods-title" class="canva-text text-3xl font-bold text-verde"></h2>
+      <p data-template-id="ods-text" class="canva-text mt-4 text-gray-600 dark:text-gray-300 leading-relaxed"></p>
+     </div>
+     <div class="flex justify-center"><img data-template-id="ods-image" class="canva-image rounded-2xl shadow-lg w-full max-w-sm object-cover" loading="lazy">
+     </div>
+    </div>
+   </section><!-- Estatísticas -->
+   <section class="py-16 bg-verde text-white">
+    <div class="max-w-6xl mx-auto px-4">
+     <div id="stats-grid" class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="stat-item" data-target="520">
+       <p class="text-4xl font-bold stat-number">0</p>
+       <p data-template-id="stat-1-label" class="canva-text mt-2 text-green-100"></p>
+      </div>
+      <div class="stat-item" data-target="35000">
+       <p class="text-4xl font-bold stat-number">0</p>
+       <p data-template-id="stat-2-label" class="canva-text mt-2 text-green-100"></p>
+      </div>
+      <div class="stat-item" data-target="8000">
+       <p class="text-4xl font-bold stat-number">0</p>
+       <p data-template-id="stat-3-label" class="canva-text mt-2 text-green-100"></p>
+      </div>
+      <div class="stat-item" data-target="120">
+       <p class="text-4xl font-bold stat-number">0</p>
+       <p data-template-id="stat-4-label" class="canva-text mt-2 text-green-100"></p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Quero Ajudar -->
+   <section id="ajudar" class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+     <h2 data-template-id="ajudar-title" class="canva-text text-3xl font-bold text-gray-900 dark:text-white"></h2>
+     <p data-template-id="ajudar-subtitle" class="canva-text mt-2 text-gray-600 dark:text-gray-300"></p>
+     <div class="mt-8 flex justify-center"><img data-template-id="volunteer-image" class="canva-image rounded-2xl shadow-lg w-full max-w-2xl object-cover h-64" loading="lazy">
+     </div>
+     <div class="mt-10 grid sm:grid-cols-2 md:grid-cols-4 gap-4"><button data-template-id="btn-doar" class="canva-button card-hover px-6 py-4 bg-verde text-white rounded-2xl font-semibold shadow-md"></button> <button data-template-id="btn-voluntario" class="canva-button card-hover px-6 py-4 bg-laranja text-white rounded-2xl font-semibold shadow-md"></button> <button data-template-id="btn-cadastrar-ong" class="canva-button card-hover px-6 py-4 bg-blue-600 text-white rounded-2xl font-semibold shadow-md"></button> <button data-template-id="btn-cadastrar-ponto" class="canva-button card-hover px-6 py-4 bg-purple-600 text-white rounded-2xl font-semibold shadow-md"></button>
+     </div>
+    </div>
+   </section><!-- Depoimentos -->
+   <section class="py-16 bg-white dark:bg-gray-900">
+    <div class="max-w-5xl mx-auto px-4">
+     <h2 data-template-id="depoimentos-title" class="canva-text text-3xl font-bold text-center text-gray-900 dark:text-white mb-10"></h2>
+     <div class="grid md:grid-cols-2 gap-8">
+      <div data-template-id="testimonial-1-card" class="canva-card card-hover bg-azulclaro dark:bg-gray-800 p-6 rounded-2xl flex gap-4 items-start"><img data-template-id="testimonial-1-photo" class="canva-image w-14 h-14 rounded-full object-cover flex-shrink-0" loading="lazy">
+       <div>
+        <p data-template-id="testimonial-1-text" class="canva-text text-gray-700 dark:text-gray-200 italic"></p>
+        <p data-template-id="testimonial-1-name" class="canva-text mt-2 font-semibold text-verde text-sm"></p>
+       </div>
+      </div>
+      <div data-template-id="testimonial-2-card" class="canva-card card-hover bg-azulclaro dark:bg-gray-800 p-6 rounded-2xl flex gap-4 items-start"><img data-template-id="testimonial-2-photo" class="canva-image w-14 h-14 rounded-full object-cover flex-shrink-0" loading="lazy">
+       <div>
+        <p data-template-id="testimonial-2-text" class="canva-text text-gray-700 dark:text-gray-200 italic"></p>
+        <p data-template-id="testimonial-2-name" class="canva-text mt-2 font-semibold text-verde text-sm"></p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contato -->
+   <section id="contato" class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-xl mx-auto px-4">
+     <h2 data-template-id="contato-title" class="canva-text text-3xl font-bold text-center text-gray-900 dark:text-white mb-8"></h2>
+     <form id="contact-form" class="space-y-4">
+      <div><label for="f-name" data-template-id="label-name" class="canva-text block text-sm font-medium mb-1"></label> <input id="f-name" type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-verde outline-none">
+      </div>
+      <div><label for="f-email" data-template-id="label-email" class="canva-text block text-sm font-medium mb-1"></label> <input id="f-email" type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-verde outline-none">
+      </div>
+      <div><label for="f-city" data-template-id="label-city" class="canva-text block text-sm font-medium mb-1"></label> <input id="f-city" type="text" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-verde outline-none">
+      </div>
+      <div><label for="f-msg" data-template-id="label-message" class="canva-text block text-sm font-medium mb-1"></label> <textarea id="f-msg" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-verde outline-none"></textarea>
+      </div><button type="submit" data-template-id="form-submit-btn" class="canva-button w-full py-3 bg-verde text-white rounded-xl font-semibold hover:bg-green-800 transition"></button>
+     </form>
+     <p id="form-success" class="hidden mt-4 text-center text-verde font-medium">✅ Mensagem enviada com sucesso!</p>
+     <p id="form-error" class="hidden mt-4 text-center text-red-600 font-medium">Erro ao enviar. Tente novamente.</p>
+    </div>
+   </section><!-- FAQ -->
+   <section class="py-16 bg-white dark:bg-gray-900">
+    <div class="max-w-3xl mx-auto px-4">
+     <h2 data-template-id="faq-title" class="canva-text text-3xl font-bold text-center text-gray-900 dark:text-white mb-10"></h2>
+     <div class="space-y-4">
+      <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left px-6 py-4 font-semibold flex justify-between items-center" aria-expanded="false"> <span data-template-id="faq-q1" class="canva-text"></span> <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i> </button>
+       <div class="faq-answer px-6 pb-4">
+        <p data-template-id="faq-a1" class="canva-text text-gray-600 dark:text-gray-300"></p>
+       </div>
+      </div>
+      <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left px-6 py-4 font-semibold flex justify-between items-center" aria-expanded="false"> <span data-template-id="faq-q2" class="canva-text"></span> <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i> </button>
+       <div class="faq-answer px-6 pb-4">
+        <p data-template-id="faq-a2" class="canva-text text-gray-600 dark:text-gray-300"></p>
+       </div>
+      </div>
+      <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left px-6 py-4 font-semibold flex justify-between items-center" aria-expanded="false"> <span data-template-id="faq-q3" class="canva-text"></span> <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i> </button>
+       <div class="faq-answer px-6 pb-4">
+        <p data-template-id="faq-a3" class="canva-text text-gray-600 dark:text-gray-300"></p>
+       </div>
+      </div>
+      <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left px-6 py-4 font-semibold flex justify-between items-center" aria-expanded="false"> <span data-template-id="faq-q4" class="canva-text"></span> <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i> </button>
+       <div class="faq-answer px-6 pb-4">
+        <p data-template-id="faq-a4" class="canva-text text-gray-600 dark:text-gray-300"></p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main><!-- Footer -->
+  <footer data-template-id="footer-section" class="canva-footer bg-gray-900 text-gray-300 py-12">
+   <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+    <div>
+     <p data-template-id="footer-brand" class="canva-text text-xl font-bold text-white"></p>
+     <p data-template-id="footer-desc" class="canva-text mt-2 text-sm text-gray-400"></p>
+    </div>
+    <div>
+     <p class="font-semibold text-white mb-3">Links</p>
+     <ul class="space-y-2 text-sm">
+      <li><a href="#home" class="hover:text-verde transition">Início</a></li>
+      <li><a href="#mapa" class="hover:text-verde transition">Mapa</a></li>
+      <li><a href="#ods" class="hover:text-verde transition">ODS 2</a></li>
+      <li><a href="#contato" class="hover:text-verde transition">Contato</a></li>
+      <li><a href="#ajudar" class="hover:text-verde transition">Ajuda</a></li>
+     </ul>
+    </div>
+    <div>
+     <p class="font-semibold text-white mb-3">Redes sociais</p>
+     <div class="flex gap-4"><i data-lucide="instagram" class="w-5 h-5 hover:text-verde cursor-pointer transition"></i> <i data-lucide="facebook" class="w-5 h-5 hover:text-verde cursor-pointer transition"></i> <i data-lucide="twitter" class="w-5 h-5 hover:text-verde cursor-pointer transition"></i> <i data-lucide="linkedin" class="w-5 h-5 hover:text-verde cursor-pointer transition"></i>
+     </div>
+    </div>
+   </div>
+   <div class="max-w-6xl mx-auto px-4 mt-8 pt-6 border-t border-gray-700 text-center text-sm text-gray-500">
+    <p data-template-id="footer-copy" class="canva-text"></p>
+   </div>
+  </footer>
+  <script src="/_sdk/1a0e63f7a958ec3e.editing_sdk.js" integrity="sha512-lW+iibZ5vXaBl3IQ1K3ooQE1gfdDZxiO+Y7NpWdeypLOwr1WIYo3edm3nu+wyePemyM75tcU3yV7YyImK9wxMQ=="></script>
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script>
+        // Dark mode
+        function toggleDark() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        // Font size
+        let fontLevel = 0;
+        function changeFontSize() {
+            fontLevel = (fontLevel + 1) % 3;
+            document.body.classList.remove('font-size-large', 'font-size-xlarge');
+            if (fontLevel === 1) document.body.classList.add('font-size-large');
+            if (fontLevel === 2) document.body.classList.add('font-size-xlarge');
+        }
+
+        // Contrast
+        function toggleContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        // FAQ
+        document.querySelectorAll('.faq-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const answer = btn.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+                if (!isOpen) answer.classList.add('open');
+                btn.setAttribute('aria-expanded', !isOpen);
+            });
+        });
+
+        // Stats animation
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.stat-item').forEach(item => {
+                        const target = parseInt(item.dataset.target);
+                        const numEl = item.querySelector('.stat-number');
+                        let current = 0;
+                        const step = Math.ceil(target / 60);
+                        const interval = setInterval(() => {
+                            current += step;
+                            if (current >= target) { current = target; clearInterval(interval); }
+                            numEl.textContent = '+' + current.toLocaleString('pt-BR');
+                        }, 25);
+                    });
+                    statsObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+        statsObserver.observe(document.getElementById('stats-grid'));
+
+        // Map
+        const map = L.map('map').setView([-23.55, -46.63], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        const locations = [
+            { lat: -23.545, lng: -46.635, name: 'Restaurante Bom Prato - Sé', type: 'refeicao', address: 'R. Maria Paula, 101 - Bela Vista', hours: 'Seg-Sex 7h-14h', phone: '(11) 3333-1234', service: '🍽 Refeições prontas' },
+            { lat: -23.560, lng: -46.655, name: 'Banco de Alimentos SP', type: 'banco', address: 'Av. Dr. Gastão V. de Moura, 226', hours: 'Seg-Sex 8h-17h', phone: '(11) 3334-5678', service: '🥬 Banco de alimentos' },
+            { lat: -23.530, lng: -46.620, name: 'ONG Ação da Cidadania', type: 'ong', address: 'R. Augusta, 1200 - Consolação', hours: 'Seg-Sáb 9h-18h', phone: '(11) 3335-9012', service: '🧑‍🤝‍🧑 ONG' },
+            { lat: -23.575, lng: -46.640, name: 'Cozinha Solidária Vila Mariana', type: 'refeicao', address: 'R. Domingos de Morais, 800', hours: 'Seg-Sex 11h-14h', phone: '(11) 3336-3456', service: '❤️ Cozinha solidária' },
+            { lat: -23.520, lng: -46.670, name: 'Ponto de Cestas - Lapa', type: 'cesta', address: 'R. Guaicurus, 500 - Lapa', hours: 'Qua e Sáb 8h-12h', phone: '(11) 3337-7890', service: '🛒 Cestas básicas' },
+        ];
+
+        const markers = [];
+        locations.forEach(loc => {
+            const marker = L.marker([loc.lat, loc.lng]).addTo(map);
+            marker.bindTooltip(loc.name);
+            marker.on('click', () => showDetail(loc));
+            marker._locType = loc.type;
+            markers.push(marker);
+        });
+
+        function showDetail(loc) {
+            const d = document.getElementById('map-detail');
+            d.classList.remove('hidden');
+            document.getElementById('detail-name').textContent = loc.name;
+            document.getElementById('detail-address').textContent = loc.address;
+            document.getElementById('detail-hours').textContent = loc.hours;
+            document.getElementById('detail-phone').textContent = loc.phone;
+            document.getElementById('detail-type').textContent = loc.service;
+        }
+
+        // Filters
+        document.querySelectorAll('.filter-cb').forEach(cb => {
+            cb.addEventListener('change', () => {
+                const active = [...document.querySelectorAll('.filter-cb:checked')].map(c => c.dataset.type);
+                markers.forEach(m => {
+                    if (active.includes(m._locType)) { m.addTo(map); }
+                    else { map.removeLayer(m); }
+                });
+            });
+        });
+
+        // Contact form
+        (async () => {
+            const handler = { onDataChanged() {} };
+            await window.dataSdk.init(handler);
+        })();
+
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.querySelector('[data-template-id="form-submit-btn"]');
+            btn.disabled = true;
+            btn.style.opacity = '0.6';
+
+            const record = {
+                name: document.getElementById('f-name').value,
+                email: document.getElementById('f-email').value,
+                city: document.getElementById('f-city').value,
+                message: document.getElementById('f-msg').value,
+                created_at: new Date().toISOString()
+            };
+
+            const result = await window.dataSdk.create(record);
+            btn.disabled = false;
+            btn.style.opacity = '1';
+
+            if (result.isOk) {
+                document.getElementById('form-success').classList.remove('hidden');
+                document.getElementById('form-error').classList.add('hidden');
+                e.target.reset();
+            } else {
+                document.getElementById('form-error').classList.remove('hidden');
+                document.getElementById('form-success').classList.add('hidden');
+            }
+        });
+
+        // Init icons
+        lucide.createIcons();
+    </script>
+ </body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alimenta+</title>
+    <meta name="description"
+        content="Alimenta+ é uma plataforma que ajuda pessoas a encontrarem pontos gratuitos de distribuição de alimentos.">
+    <meta name="author" content="Julia Rudel, João Gabini, Maria Couto, Rebeca Santos, Victoria Americo">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body> <!-- ========================= CABEÇALHO / NAVEGAÇÃO ========================== -->
+    <header>
+        <nav>
+            <div class="logo"> <a href="#inicio"> <strong>Alimenta+</strong> <span>2026</span> </a> </div>
+            <ul>
+                <li> <a href="#inicio">Início</a> </li>
+                <li> <a href="#mapa">Mapa</a> </li>
+                <li> <a href="#como-funciona">Como funciona</a> </li>
+                <li> <a href="#ods-2">ODS 2</a> </li>
+                <li> <a href="#ajudar">Ajudar</a> </li>
+                <li> <a href="#contato">Contato</a> </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main> <!-- ========================= INÍCIO ========================== -->
+        <section class="inicio" id="inicio">
+            <div class="inicio-conteudo"> <span class="etiqueta"> ODS 2 • Fome Zero </span>
+                <h1> Ninguém deve <span>passar fome.</span> </h1>
+                <p> Encontre gratuitamente pontos de distribuição de alimentos próximos de você. </p>
+                <p> O Alimenta+ conecta pessoas que precisam de alimentos a iniciativas que já fazem a diferença na
+                    comunidade. </p>
+
+                <button class="botao-inicio" onclick="location.href='#mapa'">Encontrar pontos</button>
+                <button class="botao-secundario" onclick="location.href='#ajudar'">Seja um voluntário</button>
+            </div>
+
+            <div class="inicio-imagem"> imagem<img src=""
+                    alt="Ilustração representando solidariedade e distribuição de alimentos"> </div>
+
+        </section> <!-- ========================= COMO FUNCIONA ========================== -->
+
+        <section id="como-funciona" class="como-funciona">
+            <div class="titulo-secao">
+                <h2> Encontrar ajuda pode ser simples. </h2>
+                <p> O Alimenta+ organiza informações sobre pontos de distribuição de alimentos em um único lugar. </p>
+            </div>
+            <div class="cards-funcionamento">
+                <article class="card">
+                    <div class="card-numero"> 01 </div>
+                    <div class="card-icone"> 📍 </div>
+                    <h3> Encontre </h3>
+                    <p> Acesse o mapa e encontre pontos de distribuição de alimentos próximos de você. </p>
+                </article>
+                <article class="card">
+                    <div class="card-numero"> 02 </div>
+                    <div class="card-icone"> 🍲 </div>
+                    <h3> Confira </h3>
+                    <p> Veja quais alimentos estão disponíveis, os horários de atendimento e as condições para retirada.
+                    </p>
+                </article>
+                <article class="card">
+                    <div class="card-numero"> 03 </div>
+                    <div class="card-icone"> 🤝 </div>
+                    <h3> Receba </h3>
+                    <p> Vá até o ponto escolhido e tenha acesso ao alimento disponibilizado pela iniciativa. </p>
+                </article>
+            </div>
+
+        </section> <!-- ========================= MAPA ========================== -->
+
+        <section id="mapa" class="mapa">
+            <div class="titulo-secao"> <span>MAPA DA SOLIDARIEDADE</span>
+                <h2> Encontre um ponto perto de você. </h2>
+                <p> Consulte os pontos de distribuição cadastrados e encontre a opção mais adequada. </p>
+            </div>
+            <div class="mapa-area"> <!-- Posteriormente podemos colocar aqui o mapa utilizando Leaflet. -->
+                <div id="mapa-interativo">
+                    <p> Mapa será carregado aqui. </p>
+                </div>
+                <aside class="filtros">
+                    <h3> Encontrar alimentos </h3> <label for="pesquisa"> Pesquisar </label> <input type="text"
+                        id="pesquisa" name="pesquisa" placeholder="Digite bairro ou endereço"> <label
+                        for="tipo-alimento"> Tipo de alimento </label> <select id="tipo-alimento" name="tipo-alimento">
+                        <option value=""> Todos os alimentos </option>
+                        <option value="marmita"> Marmitas </option>
+                        <option value="cesta"> Cestas básicas </option>
+                        <option value="frutas"> Frutas e verduras </option>
+                        <option value="paes"> Pães </option>
+                    </select> <label for="disponibilidade"> Disponibilidade </label> <select id="disponibilidade"
+                        name="disponibilidade">
+                        <option value=""> Todas </option>
+                        <option value="disponivel"> Disponível </option>
+                        <option value="pouco"> Pouca disponibilidade </option>
+                        <option value="esgotado"> Esgotado </option>
+                    </select> <button type="button"> Buscar pontos </button>
+                </aside>
+
+            </div> <!-- Cards dos pontos. Posteriormente podem ser gerados automaticamente pelo JavaScript. -->
+            <div class="lista-pontos">
+                <article class="ponto">
+                    <div class="ponto-status disponivel"> ● Disponível </div>
+                    <h3> Cozinha Solidária </h3>
+                    <p> 📍 Centro </p>
+                    <p> Marmitas </p>
+                    <p> 11h às 14h </p> <a href="#"> Ver detalhes </a>
+                </article>
+                <article class="ponto">
+                    <div class="ponto-status disponivel"> ● Disponível </div>
+                    <h3> Projeto Mesa Cheia </h3>
+                    <p> 📍 Vila Mariana </p>
+                    <p> Cestas básicas </p>
+                    <p> 09h às 16h </p> <a href="#"> Ver detalhes </a>
+                </article>
+                <article class="ponto">
+                    <div class="ponto-status pouco"> ● Pouca disponibilidade </div>
+                    <h3> Ponto Comunitário </h3>
+                    <p> 📍 Lapa </p>
+                    <p> Frutas e verduras </p>
+                    <p> 10h às 15h </p> <a href="#"> Ver detalhes </a>
+                </article>
+            </div>
+
+        </section> <!-- ========================= ODS 2 ========================== -->
+        <section id="ods-2" class="ods">
+            <div class="ods-conteudo">
+                <h2> ODS 2 — Fome Zero</h2>
+                <p> A ODS 2 tem como objetivo acabar com a fome, alcançar a segurança alimentar, melhorar a nutrição e
+                    promover a agricultura sustentável. </p>
+                <p> O Alimenta+ busca contribuir com esse objetivo facilitando o acesso à informação sobre iniciativas
+                    que já distribuem alimentos gratuitamente. </p>
+                <p> A proposta não é substituir organizações, governos ou projetos sociais. É criar uma ponte entre
+                    essas iniciativas e as pessoas que precisam encontrá-las. </p>
+            </div>
+            <div class="ods-destaque">
+                <div> <strong> ODS </strong> <span> 02 </span> </div>
+                <p> Fome Zero e Agricultura Sustentável </p>
+            </div>
+
+        </section> <!-- ========================= IMPACTO ========================== -->
+        <section class="impacto">
+            <div class="titulo-secao"> <span></span>
+                <h2>NOSSO IMPACTO </h2>
+                <p> Informação também pode alimentar. Quando uma pessoa sabe onde buscar ajuda, uma barreira de acesso é
+                    reduzida. </p>
+            </div>
+            <div class="numeros-impacto">
+                <div class="numero"> <strong> 350 </strong> <span> pontos cadastrados </span> </div>
+                <div class="numero"> <strong> 800 </strong> <span> familias atentidas </span> </div>
+                <div class="numero"> <strong> 22 </strong> <span> regiões atendidas </span> </div>
+                <div class="numero"> <strong> 01 </strong> <span> objetivo: combater a fome </span> </div>
+            </div>
+
+        </section> <!-- ========================= AJUDAR ========================== -->
+        <section id="ajudar" class="ajudar">
+            <div class="titulo-secao"> <span>FAÇA PARTE</span>
+                <h2> Você também pode ajudar. </h2>
+                <p> Existem várias maneiras de fortalecer uma rede de combate à insegurança alimentar. </p>
+            </div>
+            <div class="cards-ajuda">
+                <article class="card-ajuda">
+                    <div> 📍 </div>
+                    <h3> Cadastre um ponto </h3>
+                    <p> Conhece uma instituição ou iniciativa que distribui alimentos? Ajude outras pessoas a
+                        encontrá-la. </p> <a href="#cadastro.html"> Cadastrar ponto </a>
+                </article>
+                <article class="card-ajuda">
+                    <div> 📢 </div>
+                    <h3> Divulgue </h3>
+                    <p> Compartilhe o Alimenta+ com pessoas, organizações e projetos da sua comunidade. </p> <a
+                        href="#"> Compartilhar </a>
+                </article>
+                <article class="card-ajuda">
+                    <div> 🤝 </div>
+                    <h3> Seja voluntário </h3>
+                    <p> Apoie iniciativas locais que trabalham diariamente para reduzir a fome. </p> <a href="#contato">
+                        Saiba como ajudar </a>
+                </article>
+            </div>
+
+        <section><!-- ========================= CONTATO ========================== -->
+
+        </section>
+
+        </section> <!-- ========================= CONTATO ========================== -->
+        <section id="contato" class="contato">
+            <div class="titulo-secao"> <span>CONTATO</span>
+                <h2> Quer falar com a equipe? </h2>
+                <p> Envie uma mensagem, sugestão ou informação sobre um ponto cadastrado. </p>
+            </div>
+            <form>
+                <div class="campo"> <label for="nome-contato"> Nome </label> <input type="text" id="nome-contato"
+                        name="nome-contato" placeholder="Seu nome"> </div>
+                <div class="campo"> <label for="email"> E-mail </label> <input type="email" id="email" name="email"
+                        placeholder="seuemail@email.com"> </div>
+                <div class="campo campo-completo"> <label for="mensagem"> Mensagem </label> <textarea id="mensagem"
+                        name="mensagem" rows="5" placeholder="Escreva sua mensagem"></textarea> </div>
+                <div class="campo campo-completo"> <button type="submit"> Enviar mensagem </button> </div>
+            </form>
+        </section>
+
+        <section>
+    <h2> Dúvidas Frequentes </h2>
+    
+    <button class="accordion">
+        <span>É Gratuito?</span>
+    </button>
+    <div class="panel">
+        <p>Sim, totalmente gratuito para quem busca alimentação e para quem deseja cadastrar pontos.</p>
+    </div>
+
+    <button class="accordion">
+        <span>Quem pode utilizar a plataforma?</span>
+    </button>
+    <div class="panel">
+        <p>Qualquer pessoa em situação de insegurança alimentar pode utilizar a plataforma.</p>
+    </div>
+
+    <button class="accordion">
+        <span>Como encontro um local proximo?</span>
+    </button>
+    <div class="panel">
+        <p>Use o mapa interativo e digite seu bairro ou CEP na barra de pesquisa.</p>
+    </div>
+</section>
+
+</main> 
+
+<footer>
+    <div class="footer-final">
+        <p> © 2026 Alimenta+ · Todos os direitos reservados. </p>
+        <p> João Gabini · Julia Rudel · Maria Couto · Rebeca Santos · Victoria Américo </p>
+    </div>
+</footer>
+
+<script>
+    // 1. Seleciona todos os botões com a classe 'accordion'
+    const accordions = document.querySelectorAll(".accordion");
+
+    // 2. Adiciona o evento de clique para cada um deles
+    accordions.forEach(acc => {
+        acc.addEventListener("click", function() {
+            // Alterna a classe 'active' no botão clicado
+            this.classList.toggle("active");
+            
+            // Pega o painel seguinte (a resposta)
+            const panel = this.nextElementSibling;
+            
+            // Alterna entre mostrar e esconder
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
