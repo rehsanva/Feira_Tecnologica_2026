@@ -1,58 +1,463 @@
-<!DOCTYPE html>
-<html lang="en">
-
+﻿<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alimenta+ | Cadastro</title>
+  <style>
+    :root {
+      --verde-escuro: #0f7a3d;
+      --verde-primario: #22b573;
+      --verde-claro: #dff8eb;
+      --verde-suave: #eefaf3;
+      --laranja: #ff9f43;
+      --laranja-escuro: #f77f00;
+      --bg: #f4f9f5;
+      --card: #ffffff;
+      --texto: #1f2937;
+      --muted: #5f6f7d;
+      --borda: #dfece1;
+      --sombra: rgba(15, 122, 61, 0.14);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #f7fbf7 0%, #eef8f1 100%);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--borda);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    nav {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 10px 0;
+    }
+
+    .logo a {
+      text-decoration: none;
+      color: var(--verde-escuro);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .logo strong {
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .logo span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--texto);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    nav ul li a:hover {
+      color: var(--verde-primario);
+    }
+
+    .cadastro {
+      width: min(980px, 92%);
+      margin: 42px auto 60px;
+      background: var(--card);
+      padding: 34px 30px;
+      border-radius: 22px;
+      box-shadow: 0 14px 32px var(--sombra);
+      border: 1px solid rgba(34, 181, 115, 0.08);
+    }
+
+    .titulo-secao {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .titulo-secao h2 {
+      color: var(--verde-escuro);
+      font-size: clamp(1.8rem, 2.4vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .titulo-secao h3 {
+      color: var(--texto);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .titulo-secao p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 22px;
+      align-items: start;
+    }
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .campo-completo {
+      grid-column: 1 / -1;
+    }
+
+    .campo > label {
+      color: var(--texto);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #ffffff;
+      color: var(--texto);
+      font-family: inherit;
+      font-size: 0.96rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #8a98a5;
+    }
+
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    textarea:focus {
+      border-color: var(--verde-primario);
+      box-shadow: 0 0 0 4px rgba(34, 181, 115, 0.14);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .opcoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .opcoes label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid #d9eadf;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #f6fff9 0%, #edf9f2 100%);
+      color: var(--texto);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .opcoes label:hover {
+      background: #eafbf1;
+      border-color: var(--verde-primario);
+      transform: translateY(-1px);
+    }
+
+    .opcoes input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--verde-primario);
+      cursor: pointer;
+    }
+
+    .campo-completo > label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .campo-completo > label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      accent-color: var(--verde-primario);
+      flex-shrink: 0;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 15px 20px;
+      background: linear-gradient(135deg, var(--verde-primario) 0%, var(--laranja) 100%);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(255, 159, 67, 0.24);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(34, 181, 115, 0.2);
+      filter: brightness(1.04);
+    }
+
+    button[type="submit"]:active {
+      transform: translateY(0);
+    }
+
+    button[type="submit"]:focus-visible {
+      outline: 3px solid rgba(34, 181, 115, 0.25);
+      outline-offset: 3px;
+    }
+
+    input:invalid:not(:placeholder-shown),
+    textarea:invalid:not(:placeholder-shown) {
+      border-color: #e45757;
+    }
+
+    input:valid:not(:placeholder-shown),
+    textarea:valid:not(:placeholder-shown) {
+      border-color: #7ec89d;
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        width: 92%;
+      }
+
+      nav ul {
+        gap: 10px 16px;
+      }
+
+      .cadastro {
+        width: 92%;
+        padding: 28px 22px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      nav {
+        flex-direction: column;
+        justify-content: center;
+        padding: 12px 0 10px;
+        gap: 10px;
+      }
+
+      nav ul {
+        width: 100%;
+        gap: 8px 12px;
+      }
+
+      nav ul li a {
+        font-size: 0.76rem;
+      }
+
+      .cadastro {
+        width: 94%;
+        margin: 24px auto 40px;
+        padding: 22px 16px;
+        border-radius: 18px;
+      }
+
+      .titulo-secao {
+        margin-bottom: 24px;
+      }
+
+      .titulo-secao h2 {
+        font-size: 1.6rem;
+      }
+
+      .titulo-secao h3 {
+        font-size: 1rem;
+      }
+
+      .titulo-secao p {
+        font-size: 0.9rem;
+      }
+
+      form {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .campo-completo {
+        grid-column: auto;
+      }
+
+      .opcoes {
+        flex-direction: column;
+      }
+
+      .opcoes label {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .logo strong {
+        font-size: 1.25rem;
+      }
+
+      .logo span {
+        font-size: 0.68rem;
+      }
+
+      nav ul li a {
+        font-size: 0.72rem;
+      }
+
+      .cadastro {
+        padding: 18px 14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html"><strong>Alimenta+</strong> <span>2026</span></a>
+      </div>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#mapa">Mapa</a></li>
+        <li><a href="index.html#como-funciona">Como funciona</a></li>
+        <li><a href="index.html#ods-2">ODS 2</a></li>
+        <li><a href="index.html#ajudar">Ajudar</a></li>
+        <li><a href="index.html#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        </section> <!-- ========================= CADASTRO DE PONTO ========================== -->
-        <section id="cadastro" class="cadastro">
-                <div class="titulo-secao"> <span>CADASTRAR PONTO</span>
-                        <h2> Conhece um lugar que distribui alimentos? </h2>
-                        <p> Cadastre as informações para que o ponto possa fazer parte da rede. </p>
-                </div>
-                <form>
-                        <div class="campo"> <label for="nome-ponto"> Nome do ponto * </label> <input type="text"
-                                        id="nome-ponto" name="nome-ponto" placeholder="Ex.: Cozinha Solidária Esperança"
-                                        required> </div>
-                        <div class="campo"> <label for="responsavel"> Nome do responsável </label> <input type="text"
-                                        id="responsavel" name="responsavel" placeholder="Nome do responsável"> </div>
-                        <div class="campo"> <label for="endereco"> Endereço * </label> <input type="text" id="endereco"
-                                        name="endereco" placeholder="Rua, número, bairro" required> </div>
-                        <div class="campo"> <label for="cidade"> Cidade * </label> <input type="text" id="cidade"
-                                        name="cidade" placeholder="Cidade - Estado" required> </div>
-                        <div class="campo"> <label for="telefone"> Telefone </label> <input type="tel" id="telefone"
-                                        name="telefone" placeholder="(00) 00000-0000"> </div>
-                        <div class="campo"> <label for="horario"> Horário de atendimento * </label> <input type="text"
-                                        id="horario" name="horario" placeholder="Ex.: Segunda a sexta, 11h às 14h"
-                                        required> </div>
-                        <div class="campo campo-completo"> <label> O que é distribuído? </label>
-                                <div class="opcoes"> <label> <input type="checkbox" name="alimento" value="marmitas">
-                                                Marmitas
-                                        </label> <label> <input type="checkbox" name="alimento" value="cestas"> Cestas
-                                                básicas </label>
-                                        <label> <input type="checkbox" name="alimento" value="frutas"> Frutas e verduras
-                                        </label>
-                                        <label> <input type="checkbox" name="alimento" value="paes"> Pães </label>
-                                </div>
-                        </div>
-                        <div class="campo campo-completo"> <label for="regras"> Regras para retirada </label> <textarea
-                                        id="regras" name="regras" rows="4"
-                                        placeholder="Informe se é necessário cadastro, documento, horário específico etc."></textarea>
-                        </div>
-                        <div class="campo campo-completo"> <label for="observacoes"> Observações </label> <textarea
-                                        id="observacoes" name="observacoes" rows="4"
-                                        placeholder="Outras informações importantes"></textarea> </div>
-                        <div class="campo campo-completo"> <label> <input type="checkbox" name="confirmacao" required>
-                                        Confirmo
-                                        que as informações fornecidas são verdadeiras. </label> </div>
-                        <div class="campo campo-completo"> <button type="submit"> Enviar cadastro </button> </div>
-                </form>
+  <section id="cadastro" class="cadastro">
+    <div class="titulo-secao">
+      <h2>CADASTRAR PONTO</h2>
+      <h3>Conhece um lugar que distribui alimentos?</h3>
+      <p>Cadastre as informações para que o ponto possa fazer parte da rede.</p>
+    </div>
 
+    <form>
+      <div class="campo">
+        <label for="nome-ponto">Nome do ponto *</label>
+        <input type="text" id="nome-ponto" name="nome-ponto" placeholder="Ex.: Cozinha Solidária Esperança" required>
+      </div>
+
+      <div class="campo">
+        <label for="responsavel">Nome do responsável</label>
+        <input type="text" id="responsavel" name="responsavel" placeholder="Nome do responsável">
+      </div>
+
+      <div class="campo">
+        <label for="endereco">Endereço *</label>
+        <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro" required>
+      </div>
+
+      <div class="campo">
+        <label for="cidade">Cidade *</label>
+        <input type="text" id="cidade" name="cidade" placeholder="Cidade - Estado" required>
+      </div>
+
+      <div class="campo">
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+      </div>
+
+      <div class="campo">
+        <label for="horario">Horário de atendimento *</label>
+        <input type="text" id="horario" name="horario" placeholder="Ex.: Segunda a sexta, 11h às 14h" required>
+      </div>
+
+      <div class="campo campo-completo">
+        <label>O que é distribuído?</label>
+        <div class="opcoes">
+          <label><input type="checkbox" name="alimento" value="marmitas"> Marmitas</label>
+          <label><input type="checkbox" name="alimento" value="cestas"> Cestas básicas</label>
+          <label><input type="checkbox" name="alimento" value="frutas"> Frutas e verduras</label>
+          <label><input type="checkbox" name="alimento" value="paes"> Pães</label>
+        </div>
+      </div>
+
+      <div class="campo campo-completo">
+        <label for="regras">Regras para retirada</label>
+        <textarea id="regras" name="regras" rows="4" placeholder="Informe se é necessário cadastro, documento, horário específico etc."></textarea>
+      </div>
+
+      <div class="campo campo-completo">
+        <label for="observacoes">Observações</label>
+        <textarea id="observacoes" name="observacoes" rows="4" placeholder="Outras informações importantes"></textarea>
+      </div>
+
+      <div class="campo campo-completo">
+        <label>
+          <input type="checkbox" name="confirmacao" required>
+          Confirmo que as informações fornecidas são verdadeiras.
+        </label>
+      </div>
+
+      <div class="campo campo-completo">
+        <button type="submit">Enviar cadastro</button>
+      </div>
+    </form>
+  </section>
 </body>
-
 </html>
