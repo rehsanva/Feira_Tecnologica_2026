@@ -17,12 +17,8 @@ JavaScript
 Leaflet
 Git/GitHub
 
-🎯 Objetivo: Utilizar a tecnologia para facilitar o acesso à informação e conectar pessoas a iniciativas de combate à fome.
+🎯 Objetivo: Utilizar a tecnologia para facilitar o acesso à informação e conectar pessoas a iniciativas de combate à fome. Se existe ajuda, as pessoas precisam conseguir encontrá-la.
 
-Se existe ajuda, as pessoas precisam conseguir encontrá-la.
-
-👥 Equipe
-
-Julia Rudel · João Gabini · Maria Couto · Rebeca Santos · Victoria Americo
+👥 Equipe: Julia Rudel · João Gabini · Maria Couto · Rebeca Santos · Victoria Americo
 
 Status: 🚧 Em desenvolvimento
