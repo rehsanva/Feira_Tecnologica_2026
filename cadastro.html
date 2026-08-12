@@ -3,21 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alimenta+ | Cadastro</title>
+  <title>Alimenta+ | Cadastro de Ponto</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --verde-escuro: #0f7a3d;
-      --verde-primario: #22b573;
-      --verde-claro: #dff8eb;
-      --verde-suave: #eefaf3;
-      --laranja: #ff9f43;
-      --laranja-escuro: #f77f00;
-      --bg: #f4f9f5;
+      /* Cores Sobrias e Institucionais */
+      --verde-institucional: #0e5a36;
+      --verde-hover: #0a4328;
+      --verde-suave: #f0f7f3;
+      --destaque-amber: #d97706;
+      --bg: #f8faf8;
       --card: #ffffff;
-      --texto: #1f2937;
-      --muted: #5f6f7d;
-      --borda: #dfece1;
-      --sombra: rgba(15, 122, 61, 0.14);
+      --texto-principal: #111827;
+      --texto-secundario: #4b5563;
+      --borda: #d1d5db;
+      --borda-foco: #0e5a36;
+      --sombra: rgba(0, 0, 0, 0.05);
     }
 
     * {
@@ -31,118 +36,129 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, #f7fbf7 0%, #eef8f1 100%);
-      color: var(--texto);
-      line-height: 1.6;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--texto-principal);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
+    /* Header e Navegação */
     header {
-      background: rgba(255, 255, 255, 0.96);
-      border-bottom: 1px solid var(--borda);
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(8px);
     }
 
     nav {
-      width: min(1100px, 92%);
+      width: min(1120px, 92%);
       margin: 0 auto;
-      min-height: 64px;
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 10px 0;
     }
 
     .logo a {
       text-decoration: none;
-      color: var(--verde-escuro);
+      color: var(--verde-institucional);
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 8px;
-      letter-spacing: -0.02em;
     }
 
     .logo strong {
-      font-size: 1.35rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.4rem;
       font-weight: 800;
+      letter-spacing: -0.03em;
     }
 
     .logo span {
       font-size: 0.75rem;
-      color: var(--muted);
+      background-color: var(--verde-suave);
+      color: var(--verde-institucional);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
     }
 
     nav ul {
       list-style: none;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px 20px;
+      gap: 24px;
     }
 
     nav ul li a {
       text-decoration: none;
-      color: var(--texto);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      transition: color 0.2s ease, opacity 0.2s ease;
+      color: var(--texto-secundario);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
     }
 
     nav ul li a:hover {
-      color: var(--verde-primario);
+      color: var(--verde-institucional);
     }
 
+    /* Card Principal */
     .cadastro {
-      width: min(980px, 92%);
-      margin: 42px auto 60px;
+      width: min(840px, 92%);
+      margin: 48px auto 80px;
       background: var(--card);
-      padding: 34px 30px;
-      border-radius: 22px;
-      box-shadow: 0 14px 32px var(--sombra);
-      border: 1px solid rgba(34, 181, 115, 0.08);
+      padding: 48px 40px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 6px -1px var(--sombra), 0 2px 4px -2px var(--sombra);
     }
 
+    /* Títulos */
     .titulo-secao {
-      text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 36px;
+      border-bottom: 1px solid #f3f4f6;
+      padding-bottom: 24px;
     }
 
     .titulo-secao h2 {
-      color: var(--verde-escuro);
-      font-size: clamp(1.8rem, 2.4vw, 2.5rem);
-      font-weight: 800;
-      margin-bottom: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--verde-institucional);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
 
     .titulo-secao h3 {
-      color: var(--texto);
-      font-size: 1.1rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--texto-principal);
+      font-size: 1.6rem;
       font-weight: 700;
-      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
     }
 
     .titulo-secao p {
-      color: var(--muted);
-      font-size: 0.96rem;
+      color: var(--texto-secundario);
+      font-size: 0.95rem;
     }
 
+    /* Formulário e Layout */
     form {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px 22px;
+      gap: 20px 24px;
       align-items: start;
     }
 
     .campo {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       min-width: 0;
     }
 
@@ -151,196 +167,149 @@
     }
 
     .campo > label {
-      color: var(--texto);
-      font-size: 0.92rem;
-      font-weight: 700;
+      color: var(--texto-principal);
+      font-size: 0.875rem;
+      font-weight: 600;
     }
 
+    /* Inputs e Textareas */
     input[type="text"],
     input[type="tel"],
     textarea {
       width: 100%;
       border: 1px solid var(--borda);
-      border-radius: 12px;
-      padding: 12px 14px;
+      border-radius: 6px;
+      padding: 10px 14px;
       background: #ffffff;
-      color: var(--texto);
+      color: var(--texto-principal);
       font-family: inherit;
-      font-size: 0.96rem;
+      font-size: 0.925rem;
       outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     input::placeholder,
     textarea::placeholder {
-      color: #8a98a5;
+      color: #9ca3af;
     }
 
     input[type="text"]:focus,
     input[type="tel"]:focus,
     textarea:focus {
-      border-color: var(--verde-primario);
-      box-shadow: 0 0 0 4px rgba(34, 181, 115, 0.14);
+      border-color: var(--borda-foco);
+      box-shadow: 0 0 0 3px rgba(14, 90, 54, 0.1);
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 100px;
       resize: vertical;
     }
 
+    /* Seleção de Alimentos (Checkboxes) */
     .opcoes {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      margin-top: 4px;
     }
 
     .opcoes label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 12px;
-      border: 1px solid #d9eadf;
-      border-radius: 12px;
-      background: linear-gradient(180deg, #f6fff9 0%, #edf9f2 100%);
-      color: var(--texto);
-      font-size: 0.9rem;
-      font-weight: 600;
+      padding: 8px 14px;
+      border: 1px solid var(--borda);
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--texto-secundario);
+      font-size: 0.875rem;
+      font-weight: 500;
       cursor: pointer;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      transition: all 0.15s ease;
+      user-select: none;
     }
 
     .opcoes label:hover {
-      background: #eafbf1;
-      border-color: var(--verde-primario);
-      transform: translateY(-1px);
+      background: var(--verde-suave);
+      border-color: var(--verde-institucional);
+      color: var(--verde-institucional);
     }
 
     .opcoes input[type="checkbox"] {
-      width: 17px;
-      height: 17px;
-      accent-color: var(--verde-primario);
+      width: 16px;
+      height: 16px;
+      accent-color: var(--verde-institucional);
       cursor: pointer;
     }
 
-    .campo-completo > label {
+    /* Termos e Validação */
+    .campo-completo > label.checkbox-termo {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      color: var(--muted);
-      font-weight: 600;
+      color: var(--texto-secundario);
+      font-size: 0.875rem;
+      font-weight: 400;
       cursor: pointer;
+      margin-top: 8px;
     }
 
-    .campo-completo > label input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      margin-top: 3px;
-      accent-color: var(--verde-primario);
+    .campo-completo > label.checkbox-termo input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      accent-color: var(--verde-institucional);
       flex-shrink: 0;
     }
 
+    /* Botão de Envio */
     button[type="submit"] {
       width: 100%;
       border: none;
-      border-radius: 14px;
-      padding: 15px 20px;
-      background: linear-gradient(135deg, var(--verde-primario) 0%, var(--laranja) 100%);
+      border-radius: 6px;
+      padding: 12px 24px;
+      background: var(--verde-institucional);
       color: #ffffff;
       font-family: inherit;
-      font-size: 1rem;
-      font-weight: 800;
+      font-size: 0.95rem;
+      font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 10px 24px rgba(255, 159, 67, 0.24);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      margin-top: 10px;
     }
 
     button[type="submit"]:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 28px rgba(34, 181, 115, 0.2);
-      filter: brightness(1.04);
+      background: var(--verde-hover);
     }
 
     button[type="submit"]:active {
-      transform: translateY(0);
+      transform: translateY(1px);
     }
 
-    button[type="submit"]:focus-visible {
-      outline: 3px solid rgba(34, 181, 115, 0.25);
-      outline-offset: 3px;
-    }
-
-    input:invalid:not(:placeholder-shown),
-    textarea:invalid:not(:placeholder-shown) {
-      border-color: #e45757;
-    }
-
-    input:valid:not(:placeholder-shown),
-    textarea:valid:not(:placeholder-shown) {
-      border-color: #7ec89d;
-    }
-
-    @media (max-width: 850px) {
-      nav {
-        width: 92%;
-      }
-
-      nav ul {
-        gap: 10px 16px;
-      }
-
-      .cadastro {
-        width: 92%;
-        padding: 28px 22px;
-      }
-    }
-
-    @media (max-width: 650px) {
+    /* Responsividade */
+    @media (max-width: 640px) {
       nav {
         flex-direction: column;
         justify-content: center;
-        padding: 12px 0 10px;
-        gap: 10px;
+        height: auto;
+        padding: 14px 0;
+        gap: 12px;
       }
 
       nav ul {
-        width: 100%;
-        gap: 8px 12px;
-      }
-
-      nav ul li a {
-        font-size: 0.76rem;
+        gap: 12px 16px;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .cadastro {
-        width: 94%;
+        padding: 28px 20px;
         margin: 24px auto 40px;
-        padding: 22px 16px;
-        border-radius: 18px;
-      }
-
-      .titulo-secao {
-        margin-bottom: 24px;
-      }
-
-      .titulo-secao h2 {
-        font-size: 1.6rem;
-      }
-
-      .titulo-secao h3 {
-        font-size: 1rem;
-      }
-
-      .titulo-secao p {
-        font-size: 0.9rem;
       }
 
       form {
         grid-template-columns: 1fr;
         gap: 16px;
-      }
-
-      .campo-completo {
-        grid-column: auto;
       }
 
       .opcoes {
@@ -351,24 +320,6 @@
         width: 100%;
       }
     }
-
-    @media (max-width: 400px) {
-      .logo strong {
-        font-size: 1.25rem;
-      }
-
-      .logo span {
-        font-size: 0.68rem;
-      }
-
-      nav ul li a {
-        font-size: 0.72rem;
-      }
-
-      .cadastro {
-        padding: 18px 14px;
-      }
-    }
   </style>
 </head>
 
@@ -376,7 +327,7 @@
   <header>
     <nav>
       <div class="logo">
-        <a href="index.html"><strong>Alimenta+</strong> <span>2026</span></a>
+        <a href="index.html"><strong>Alimenta+</strong> <span>Rede Solidária</span></a>
       </div>
       <ul>
         <li><a href="index.html">Início</a></li>
@@ -391,9 +342,9 @@
 
   <section id="cadastro" class="cadastro">
     <div class="titulo-secao">
-      <h2>CADASTRAR PONTO</h2>
-      <h3>Conhece um lugar que distribui alimentos?</h3>
-      <p>Cadastre as informações para que o ponto possa fazer parte da rede.</p>
+      <h2>Cadastro de Ponto</h2>
+      <h3>Conhece ou administra um local de distribuição?</h3>
+      <p>Preencha os dados abaixo para integrar o ponto à nossa rede de mapeamento de combate à fome.</p>
     </div>
 
     <form>
@@ -404,58 +355,58 @@
 
       <div class="campo">
         <label for="responsavel">Nome do responsável</label>
-        <input type="text" id="responsavel" name="responsavel" placeholder="Nome do responsável">
+        <input type="text" id="responsavel" name="responsavel" placeholder="Ex.: Maria da Silva">
       </div>
 
       <div class="campo">
-        <label for="endereco">Endereço *</label>
-        <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro" required>
+        <label for="endereco">Endereço completo *</label>
+        <input type="text" id="endereco" name="endereco" placeholder="Rua, número e bairro" required>
       </div>
 
       <div class="campo">
-        <label for="cidade">Cidade *</label>
-        <input type="text" id="cidade" name="cidade" placeholder="Cidade - Estado" required>
+        <label for="cidade">Cidade / UF *</label>
+        <input type="text" id="cidade" name="cidade" placeholder="Ex.: São Paulo - SP" required>
       </div>
 
       <div class="campo">
-        <label for="telefone">Telefone</label>
+        <label for="telefone">Telefone para contato</label>
         <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
       </div>
 
       <div class="campo">
         <label for="horario">Horário de atendimento *</label>
-        <input type="text" id="horario" name="horario" placeholder="Ex.: Segunda a sexta, 11h às 14h" required>
+        <input type="text" id="horario" name="horario" placeholder="Ex.: Segunda a sexta, das 11h às 14h" required>
       </div>
 
       <div class="campo campo-completo">
-        <label>O que é distribuído?</label>
+        <label>Tipos de alimento distribuídos</label>
         <div class="opcoes">
-          <label><input type="checkbox" name="alimento" value="marmitas"> Marmitas</label>
+          <label><input type="checkbox" name="alimento" value="marmitas"> Marmitas prontas</label>
           <label><input type="checkbox" name="alimento" value="cestas"> Cestas básicas</label>
-          <label><input type="checkbox" name="alimento" value="frutas"> Frutas e verduras</label>
-          <label><input type="checkbox" name="alimento" value="paes"> Pães</label>
+          <label><input type="checkbox" name="alimento" value="frutas"> Hortifrúti / Orgânicos</label>
+          <label><input type="checkbox" name="alimento" value="paes"> Pães e panificados</label>
         </div>
       </div>
 
       <div class="campo campo-completo">
-        <label for="regras">Regras para retirada</label>
-        <textarea id="regras" name="regras" rows="4" placeholder="Informe se é necessário cadastro, documento, horário específico etc."></textarea>
+        <label for="regras">Regras e requisitos para retirada</label>
+        <textarea id="regras" name="regras" placeholder="Informe se há necessidade de cadastro prévio, apresentação de documento, limite por pessoa, etc."></textarea>
       </div>
 
       <div class="campo campo-completo">
-        <label for="observacoes">Observações</label>
-        <textarea id="observacoes" name="observacoes" rows="4" placeholder="Outras informações importantes"></textarea>
+        <label for="observacoes">Observações adicionais</label>
+        <textarea id="observacoes" name="observacoes" placeholder="Informações sobre ponto de referência, acesso para PCD, aceitação de doações, etc."></textarea>
       </div>
 
       <div class="campo campo-completo">
-        <label>
+        <label class="checkbox-termo">
           <input type="checkbox" name="confirmacao" required>
-          Confirmo que as informações fornecidas são verdadeiras.
+          Declaramos que as informações acima são precisas e representam um ponto ativo de apoio comunitário.
         </label>
       </div>
 
       <div class="campo campo-completo">
-        <button type="submit">Enviar cadastro</button>
+        <button type="submit">Enviar Formulário de Cadastro</button>
       </div>
     </form>
   </section>

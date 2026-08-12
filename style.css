@@ -1,8 +1,91 @@
+:root {
+    --verde-escuro: #0e5a36;
+    --verde-hover: #0a4328;
+    --amarelo: #fbbf24;
+    --fundo-primario: #f0f7f3;
+    --fundo-secundario: #e8f5e9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, var(--fundo-primario) 0%, var(--fundo-secundario) 50%, #fff9e6 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Header e Navegação */
+header {
+    background-color: var(--verde-escuro);
+    box-shadow: 0 2px 8px rgba(14, 90, 54, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.logo span {
+    background-color: var(--amarelo);
+    color: var(--verde-escuro);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    font-size: 0.8rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    border-bottom: 3px solid var(--amarelo);
+    color: var(--amarelo);
+}
+
 .nav {
-    background-color:black
+    background-color: var(--verde-escuro);
 }
 
 .panel {
     display: none;
     /* Adicione mais estilos do seu painel aqui */
+}
+
+/* Geral - Links com hover amarelo */
+a {
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    border-bottom: 2px solid var(--amarelo);
 }
