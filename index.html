@@ -148,10 +148,10 @@
                     reduzida. </p>
             </div>
             <div class="numeros-impacto">
-                <div class="numero"> <strong> 350 </strong> <span> pontos cadastrados </span> </div>
-                <div class="numero"> <strong> 800 </strong> <span> familias atentidas </span> </div>
-                <div class="numero"> <strong> 22 </strong> <span> regiões atendidas </span> </div>
-                <div class="numero"> <strong> 01 </strong> <span> objetivo: combater a fome </span> </div>
+                <div class="numero"> + de <strong> 350 </strong> <span> pontos cadastrados </span> </div>
+                <div class="numero"> + de <strong> 800 </strong> <span> familias atendidas </span> </div>
+                <div class="numero"> + de  <strong> 22 </strong> <span> regiões atendidas </span> </div>
+                <div class="numero"> Apenas <strong> 01 </strong> <span> objetivo: combater a fome </span> </div>
             </div>
 
         </section> <!-- ========================= AJUDAR ========================== -->
@@ -168,12 +168,18 @@
                         encontrá-la. </p>
                     <a href="cadastro.html" target="_blank" rel="noopener noreferrer"> Cadastrar ponto </a>
                 </article>
+
                 <article class="card-ajuda">
                     <div> 📢 </div>
                     <h3> Divulgue </h3>
-                    <p> Compartilhe o Alimenta+ com pessoas, organizações e projetos da sua comunidade. </p> <a
-                        href="#"> Compartilhar </a>
+                    <p> Compartilhe o Alimenta+ com pessoas, organizações e projetos da sua comunidade. </p>
+
+                    <button onclick="compartilharProjeto()" class="btn-compartilhar">
+                        <span>🔗</span>
+                        Compartilhe este projeto
+                    </button>
                 </article>
+
                 <article class="card-ajuda">
                     <div> 🤝 </div>
                     <h3> Seja voluntário em outros projetos</h3>
@@ -181,6 +187,14 @@
                     <a href="https://zuzuforafrica.com/" target="_blank" rel="noopener noreferrer">Conhecer projeto
                         parceiro</a>
                 </article>
+
+                <div id="mensagemCompartilhamento" class="toast-compartilhamento">
+                    <span class="toast-icone">✓</span>
+                    <div>
+                        <strong>Link copiado!</strong>
+                        <p>Agora você pode compartilhar este projeto.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -284,6 +298,48 @@
                 }
             });
         });
+
+
+        function compartilharProjeto() {
+            const link = window.location.href;
+
+            navigator.clipboard.writeText(link).then(() => {
+                const mensagem = document.getElementById("mensagemCompartilhamento");
+
+                mensagem.classList.add("mostrar");
+
+                setTimeout(() => {
+                    mensagem.classList.remove("mostrar");
+                }, 3500);
+            });
+        }
+
+
+        // ===== CONTADOR DOS NÚMEROS DE IMPACTO =====
+
+        const numeros = document.querySelectorAll(".numero strong");
+
+        numeros.forEach((numero) => {
+            const valorFinal = parseInt(numero.textContent);
+
+            let valorAtual = 0;
+
+            const duracao = 1500; // duração da animação em milissegundos
+            const intervalo = 20;
+            const incremento = valorFinal / (duracao / intervalo);
+
+            const contador = setInterval(() => {
+                valorAtual += incremento;
+
+                if (valorAtual >= valorFinal) {
+                    valorAtual = valorFinal;
+                    clearInterval(contador);
+                }
+
+                numero.textContent = Math.floor(valorAtual);
+            }, intervalo);
+        });
+
     </script>
 
 </body>

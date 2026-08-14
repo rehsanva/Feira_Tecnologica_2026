@@ -819,13 +819,41 @@
    
    .card-ajuda a {
        display: inline-block;
-   
        margin-top: 18px;
-   
        color: var(--verde);
        font-weight: 700;
        font-size: 0.85rem;
    }
+
+/* ===== LINK COMPARTILHAR ===== */
+
+.btn-compartilhar {
+    display: inline-block;
+
+    margin-top: 18px;
+    padding: 0;
+
+    border: none;
+    border-radius: 0;
+
+    background: transparent;
+    color: var(--verde);
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: none;
+
+    transition: 0.25s ease;
+}
+
+.btn-compartilhar:hover {
+    color: #176b35;
+    transform: translateX(3px);
+}
    
    
    /* =========================================================
@@ -878,7 +906,77 @@
        font-weight: 700;
    }
    
-   
+   /* ===== MENSAGEM DE COMPARTILHAMENTO ===== */
+
+.toast-compartilhamento {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 16px 20px;
+    min-width: 300px;
+
+    background: #ffffff;
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+
+    transition: 
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+
+    z-index: 9999;
+}
+
+/* Quando aparece */
+.toast-compartilhamento.mostrar {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Ícone */
+.toast-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: #e8f7ed;
+    color: #2e9d57;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Texto */
+.toast-compartilhamento strong {
+    display: block;
+
+    color: #222;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+.toast-compartilhamento p {
+    margin: 0;
+
+    color: #777;
+    font-size: 13px;
+}
    /* =========================================================
       CONTATO
       ========================================================= */
