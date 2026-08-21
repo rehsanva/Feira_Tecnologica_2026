@@ -80,8 +80,9 @@
                 <h2> Encontre um ponto perto de você. </h2>
                 <p> Consulte os pontos de distribuição cadastrados e encontre a opção mais adequada. </p>
             </div>
-            <div class="mapa-area"> <!-- Posteriormente podemos colocar aqui o mapa utilizando Leaflet. -->
+            <div class="mapa-area"> 
                 <div id="mapa-interativo">
+                    
                     <p> Mapa será carregado aqui. </p>
                 </div>
                 <aside class="filtros">
@@ -342,9 +343,14 @@
                 numero.textContent = Math.floor(valorAtual);
             }, intervalo);
         });
-
+   
+    </script>
     </script>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    
+    </body>
 </body>
 
 </html>
