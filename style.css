@@ -51,6 +51,10 @@
        background: var(--branco);
        line-height: 1.6;
        font-size: 16px;
+       width: 100%;
+       overflow-x: hidden;
+       margin: 0;
+       padding: 0   ;
    }
    
    img {
@@ -78,11 +82,9 @@
    /*CONTAINER*/
    
    header nav,
-   .inicio,
    .como-funciona,
    .mapa,
    .ods,
-   .impacto,
    .ajudar,
    .contato,
    footer {
@@ -202,36 +204,18 @@
       ========================================================= */
    
    .inicio {
+       width: 100%;
+       max-width: 100%;
        min-height: 560px;
-   
+       background: linear-gradient(100deg, #dbffd1 0%, rgb(220, 255, 192) 55%, #c9ffbe 100%);
        display: grid;
        grid-template-columns: 1fr 0.9fr;
        align-items: center;
        gap: 70px;
-   
-       padding-top: 70px;
-       padding-bottom: 70px;
+       padding: 70px max(24px, calc((100% - var(--largura)) / 2));
+       box-sizing: border-box;
    }
    
-   
-   /* fundo suave do hero */
-   
-   .inicio::before {
-       content: "";
-       position: absolute;
-       left: 0;
-       right: 0;
-       height: 560px;
-       background:
-           linear-gradient(
-               100deg,
-               #dbffd1 0%,
-               rgb(220, 255, 192) 55%,
-               #c9ffbe 100%
-           );
-   
-       z-index: -1;
-   }
    
    
    /* conteúdo */
@@ -292,11 +276,15 @@
    
        transition: 0.2s ease;
    }
+
+   .botoes-acao {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+   }
    
    .botao-inicio {
-       margin-top: 20px;
-       margin-right: 8px;
-   
        border: 2px solid var(--verde);
        background: var(--verde);
        color: white;
@@ -780,10 +768,13 @@
     color: var(--texto-secundario);
 }
    .impacto {
-       width: 100vw;
-       padding: 88px max(24px, calc((100% - var(--largura)) / 2));
-       background-color: var(--verde-escuro);
+       width: 100%;
+       max-width: 100%;
+       margin: 0;
+       padding: 80px max(24px, calc((100% - var(--largura)) / 2));
+       background: var(--verde-escuro);
        color: white;
+       box-sizing: border-box;
    }
    
    .impacto .titulo-secao {
@@ -1186,13 +1177,13 @@
    @media (max-width: 900px) {
    
        header nav ul {
-           gap: 15px;
+           flex-wrap: wrap;
        }
    
        .inicio {
            grid-template-columns: 1fr;
            gap: 35px;
-   
+           padding-bottom: 55px;
            padding-top: 55px;
        }
    
@@ -1231,17 +1222,45 @@
    @media (max-width: 650px) {
    
        header nav {
+           flex-direction: column;
            height: auto;
            min-height: 70px;
            padding: 14px 0;
        }
-   
+
        header nav ul {
-           display: none;
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: center;
+           gap: 10px;
+           margin-top: 10px;
        }
-   
+
+       header nav ul a {
+            font-size: 0.8rem;
+        }
+
+       body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+       
+       .botoes-acao {
+           display: flex;
+           flex-direction: column;
+           gap: 15px;
+           width: 100%;
+           margin-top: 20px;
+    }
+
+       .botao-inicio, .botao-secundario {
+           width: 100%;
+           text-align: center;
+           margin: 0;
+    }
+
        header nav,
-       .inicio,
        .como-funciona,
        .ods,
        .ajudar,
@@ -1251,13 +1270,18 @@
 
        .impacto {
            padding: 60px 15px;
+           width: 100%; 
+           max-width: 100%;
+           padding: 60px 15px;
+           box-sizing: border-box;
+           margin-left: 0;
+
     }
    
        .inicio {
+           padding: 40px 20px 60px 20px;
            min-height: auto;
-   
-           padding-top: 45px;
-           padding-bottom: 60px;
+           box-sizing: border-box;
        }
    
        .inicio h1 {
@@ -1320,18 +1344,7 @@
            grid-column: auto;
        }
    
-       section:nth-of-type(7) {
-           width: min(100% - 30px, var(--largura));
-       }
-   
-       section:nth-of-type(7) > div {
-           grid-template-columns: 1fr;
-           text-align: center;
-       }
-   
-       section:nth-of-type(7) img {
-           margin: auto;
-       }
+
    
        .footer-final {
            flex-direction: column;
@@ -1748,11 +1761,6 @@
 
 /* CELULAR */
 @media (max-width: 650px) {
-    .impacto {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        padding: 65px 0;
-    }
 
     .numeros-impacto {
         grid-template-columns: 1fr 1fr;
@@ -1767,7 +1775,13 @@
 /* INFO-CARDS */
 .informacoes .info-card img{
     width: 350px;
-    height: 350px;
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     display: flex;
     justify-self: center;
     align-self: center;
@@ -1802,4 +1816,4 @@
 
 .informacoes .info-card{
     margin-bottom: 50px;
-}
+}    
