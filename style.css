@@ -638,7 +638,6 @@
    
    .ods-destaque {
        min-height: 250px;
-   
        display: flex;
        flex-direction: column;
        align-items: center;
@@ -1211,6 +1210,7 @@
        .ods-destaque {
            max-width: 300px;
            width: 100%;
+           margin: 0 auto;
        }
    }
    
@@ -1321,6 +1321,7 @@
        .ods {
            padding-top: 65px;
            padding-bottom: 65px;
+
        }
    
        .numeros-impacto {
@@ -1493,20 +1494,16 @@
     max-width: 300px;
     padding: 25px;
     text-align: center;
-
     background: var(--branco);
     border: 1px solid var(--borda);
     border-radius: var(--raio);
-
     box-shadow: var(--sombra);
-
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-
     min-height: 430px;
+    margin: 0 auto;
 }
 
 .card-equipe:hover {
@@ -1781,7 +1778,7 @@
     max-width: 350px;
     height: auto;
     aspect-ratio: 1/1;
-    object-fit: cover;
+    object-fit: contain;
     display: flex;
     justify-self: center;
     align-self: center;
@@ -1816,4 +1813,4 @@
 
 .informacoes .info-card{
     margin-bottom: 50px;
-}    
+}
