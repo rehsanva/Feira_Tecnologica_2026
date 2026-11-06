@@ -1363,32 +1363,21 @@
 }
 
 .historia-container {
-    max-width:1300px;
+    max-width: 1300px;
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;   /* era 1fr 1fr */
+    justify-items: center;        /* centraliza o bloco de texto */
     gap: 100px;
     align-items: center;
 }
 
-.historia-imagem {
-    width: 100%;
-    height: 430px;
-    overflow: hidden;
-    border-radius: var(--raio);
-}
-
-.historia-imagem img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
 .historia-texto {
     max-width: 650px;
-}
+    margin: 0 auto;
+    text-align: center;  
+}    
 
 .historia-tag {
     display: inline-block;
