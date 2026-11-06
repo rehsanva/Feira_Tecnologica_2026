@@ -1376,7 +1376,7 @@
 .historia-texto {
     max-width: 650px;
     margin: 0 auto;
-    
+    text-align: center;  
 }    
 
 .historia-tag {
